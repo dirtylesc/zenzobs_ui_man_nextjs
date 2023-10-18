@@ -1,0 +1,13 @@
+.wrapper {
+  width: 260px;
+  z-index: 10;
+  background: #313a46;
+  bottom: 0;
+  position: fixed;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  top: 0;
+  padding-top: 70px;
+  -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+  box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+}
