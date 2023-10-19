@@ -4,18 +4,19 @@ import styles from "./SidebarMenu.module.scss";
 import React from "react";
 
 const cx = classNames.bind(styles);
+type Props = {
+  title     ?: string;
+  children  : React.ReactNode;
+}
 
 function MenuList({
   title,
   children,
-}: {
-  title     ?: string;
-  children  : React.ReactNode;
-}) {
+}: Props) {
   return (
     <div className={cx(styles.menu_list)}>
       {title && <h5 className={cx(styles.menu_list__title)}>{title}</h5>}
-      <div className={cx(styles.menu_list__content)}>{children}</div>
+      <ul className={cx(styles.menu_list__content)}>{children}</ul>
     </div>
   );
 }

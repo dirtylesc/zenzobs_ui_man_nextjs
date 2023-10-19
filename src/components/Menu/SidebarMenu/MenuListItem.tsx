@@ -1,26 +1,65 @@
+'use client'
+
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import classNames from "classnames";
 
 import styles from "./SidebarMenu.module.scss";
-import React from "react";
-import { FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 
-const cx = classNames.bind(styles);
-
-function MenuListItem({
-  title,
-  type,
-  leftIcon,
-  rightIcon,
-  children
-}: {
-  title       ?: string;
+const cx    = classNames.bind(styles);
+type Props  = {
+  title       : string;
   type        ?: string;
   leftIcon    ?: React.ReactNode;
   rightIcon   ?: React.ReactNode;
+  onClick     ?: MouseEventHandler;
   children    ?: React.ReactNode;
-}) {
-  return <div className={cx(styles.menu_list_item)}>
-  </div>;
+}
+const getStyleObj = (type ?: string) => ({
+  wrapper: [
+    styles.menu_list_item,
+    type === 'child' && styles.menu_list_item_child, 
+    'list-none'
+  ]
+})
+
+function MenuListItem({
+  title,
+  type = 'child',
+  leftIcon,
+  rightIcon,
+  onClick,
+  children
+}: Props) {
+  const [styleObj, setStyleObj] = useState(getStyleObj());
+
+  useEffect(() => {
+    setStyleObj(getStyleObj(type))
+  }, [type])
+
+  return (
+    <li className={cx(...styleObj.wrapper)}>
+      <button onClick={onClick}>
+        <div>
+          {
+            leftIcon && (
+              <div className={cx(styles.menu_list_item__icon)}>
+                {leftIcon}
+              </div>
+            )
+          }
+          <span className={cx(styles.menu_list_item__title)}>{title}</span>
+          {
+            rightIcon && (
+              <div className={cx(styles.menu_list_item__right_icon)}>
+                {rightIcon}
+              </div>
+            )
+          }
+        </div>
+        <ul>{children}</ul>
+      </button>
+    </li>
+  );
 }
 
 export default MenuListItem;
