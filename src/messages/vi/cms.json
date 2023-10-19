@@ -1,0 +1,87 @@
+{
+	"----------HEADER----------"						: "",
+	"Header"											: {
+		"profile"						        		: "Tài khoản",
+		"cra"							        		: "Khai báo tính công",
+		"dayoff"						            	: "Xin nghỉ phép",	
+		"cra_management"				            	: "Quản lý bảng tính công",
+		"dayoff_management"			            		: "Quản lý xin nghỉ phép",
+		"holiday"						        		: "Quản lý ngày nghỉ lễ quốc gia",
+		"project"						        		: "Quản lý dự án để tính công",
+		"disconnect"					            	: "Đăng xuất",
+		"setting"						        		: "Cài đặt",
+		"search_enter"					        		: "Nhập từ khóa ...",
+		"notify_view_more"					            : "Xem"
+	},
+
+
+	"----------SIDEBAR----------"						: "",
+	"Sidebar"											: {
+		"partner_client"                        		: "Đối tác & khách hàng",
+		"per_person_typ_02"                     		: "Khách hàng",
+		"per_person_typ_03"                     		: "Nhà phân phối",
+		"per_person_typ_04"                     		: "Nhà sản xuất",
+		"per_person_typ_06"                     		: "Đối tác khác",
+	
+		"aut" 				                			: "Người dùng",
+		"aut_user"	                					: "QL người dùng",
+		"aut_auth_service"	                			: "QL dịch vụ",
+		"aut_role"	                					: "QL vai trò",
+		"aut_right"	                					: "QL quyền",
+		
+		"aut_user_typ_01" 		                		: "QL người dùng",
+	
+		"mat" 					                		: "Sản phẩm",
+		"mat_material" 			                		: "Sản phẩm",
+		"mat_unit" 				                		: "Đơn vị xuất nhập",
+		"mat_alarm" 			                		: "QL báo động",
+		"mat_bcode" 			                		: "QL mã vạch",	
+		
+		"tpy_cat" 				                		: "QL nhóm sản phẩm",
+
+
+		"shp_vendor"			               			: "Bán hàng",
+		"shp_checkStock"		               			: "Kiểm kho",
+		"shp_per_info"			               			: "Thông tin doanh nghiệp",
+		
+		
+		"sor_order_in" 				            		: "Nhập kho",
+		
+		"sor_order_in_buy" 			            		: "Nhập mua",
+		"sor_order_in_bal" 			            		: "Nhập căn bằng",
+		"sor_order_in_transfert"	            		: "Nhập do chuyển kho",
+		"mat_ware_house" 			            		: "QL kho bãi",
+		
+		"sor_order_out" 			            		: "Xuất kho",
+		
+		"sor_order_out_sell"		            		: "Xuất bán",
+		"sor_order_out_bal"			            		: "Xuất căn bằng kho",
+		"sor_order_out_bal_stk"		            		: "Xuất căn bằng do mất",
+		"sor_order_out_bal_fail"	            		: "Xuất căn bằng do hết hạn",
+		"sor_order_out_bal_other"	            		: "Xuất căn bằng lý do khác",
+		"sor_order_out_transfert"	            		: "Xuất chuyển kho",
+		"sor_order_out_stat"		            		: "QL giao nhận",
+		"sor_deal"					            		: "QL khuyến mãi",
+		
+		
+		"sor_order" 				            		: "Tổng kết",
+		
+		"mat_stock_rq" 						    		: "Kiểm kê tồn kho",
+		"mat_stock_rq_month" 				    		: "Kiểm kê tồn kho theo tháng",
+		"report_sor_order_out_sale" 		    		: "Tổng kết bán hàng",
+		"report_sor_order_out_sale_analyze"	    		: "Phân tích kết quả bán hàng",
+		"report_sor_order_in_warehouse" 	    		: "Tổng kết nhập kho",
+		"report_sor_order_out_warehouse" 	    		: "Tổng kết xuất kho",
+		
+		"nso" 						            		: "Bài viết",
+		"nso_post" 					            		: "Blog",
+		"nso_offer" 				            		: "Ưu đãi"
+	},
+	
+	"----------LANG----------"						    : "",
+	"Lang"												: {
+		"vi"								        	: "Tiếng Việt",
+		"us"								        	: "English",
+		"fr"								        	: "Fraiçais"
+	}
+}
