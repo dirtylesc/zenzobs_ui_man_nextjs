@@ -1,7 +1,6 @@
 'use client'
 
 import { useTranslations }      from "next-intl";
-import { useRouter }            from "next/navigation";
 import classNames               from "classnames";
 import Icon                     from '@mdi/react';
 import { 
@@ -13,6 +12,7 @@ import {
   mdiRobotAngryOutline 
 }                               from '@mdi/js';
 
+import constConfig              from "@/constants";
 import styles                   from "./Sidebar.module.scss";
 import MenuList                 from "@/components/Menu/SidebarMenu/MenuList";
 import MenuListItem             from "@/components/Menu/SidebarMenu/MenuListItem";
@@ -21,36 +21,42 @@ const cx = classNames.bind(styles);
 
 const menu = [
   {
-    title     : 'aut',
+    title     : constConfig.groups.AUT,
     type      : 'parent',
     leftIcon  : mdiAccountOutline,
     rightIcon : mdiRobotAngryOutline,
     children  : [
       {
-        title : 'aut_user',
+        title : constConfig.groups.AUT_USER,
+        path  : constConfig.paths.AUT_USER
       },
       {
-        title : 'aut_auth_service',
+        title : constConfig.groups.AUT_AUTH_SERVICE,
+        path  : constConfig.paths.AUT_AUTH_SERVICE
       },
       {
-        title : 'aut_role',
+        title : constConfig.groups.AUT_ROLE,
+        path  : constConfig.paths.AUT_ROLE
       },
       {
-        title : 'aut_right',
+        title : constConfig.groups.AUT_RIGHT,
+        path  : constConfig.paths.AUT_RIGHT
       },
     ]
   },
   {
-    title     : 'nso',
+    title     : constConfig.groups.NSO,
     type      : 'parent',
     leftIcon  : mdiPostOutline,
     rightIcon : mdiRobotAngryOutline,
     children  : [
       {
-        title : 'nso_offer',
+        title : constConfig.groups.NSO_OFFER,
+        path  : constConfig.paths.NSO_OFFER
       },
       {
-        title : 'nso_post',
+        title : constConfig.groups.NSO_POST,
+        path  : constConfig.paths.NSO_POST
       },
     ]
   },
@@ -75,12 +81,7 @@ const menu = [
 ]
 
 function Sidebar() {
-  const { push }  = useRouter();
   const t         = useTranslations("cms.Sidebar");
-
-  const handleRedirect = (path: string) => {
-    push('/' + path)
-  }
 
   return <section className={cx(styles.wrapper)}>
       <MenuList>
@@ -96,9 +97,9 @@ function Sidebar() {
                 {
                   item.children?.map(child => (
                     <MenuListItem 
-                      key   = {item.title}
+                      key   = {child.title}
                       title = {t(child.title)}
-                      onClick={() => handleRedirect(`${item.title}/${child.title}`)}
+                      path  = {child.path}
                     />
                   ))
                 }

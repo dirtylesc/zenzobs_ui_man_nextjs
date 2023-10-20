@@ -1,14 +1,21 @@
 'use client'
 
-import React, { MouseEventHandler, useEffect, useState } from "react";
-import classNames from "classnames";
+import React, { 
+  MouseEventHandler, 
+  useEffect, 
+  useState 
+}                     from "react";
+import { useLocale }  from "next-intl";
+import classNames     from "classnames";
 
-import styles from "./SidebarMenu.module.scss";
+import styles         from "./SidebarMenu.module.scss";
+import Link from "next/link";
 
 const cx    = classNames.bind(styles);
 type Props  = {
   title       : string;
   type        ?: string;
+  path        ?: string;
   leftIcon    ?: React.ReactNode;
   rightIcon   ?: React.ReactNode;
   onClick     ?: MouseEventHandler;
@@ -25,12 +32,14 @@ const getStyleObj = (type ?: string) => ({
 function MenuListItem({
   title,
   type = 'child',
+  path,
   leftIcon,
   rightIcon,
   onClick,
   children
 }: Props) {
   const [styleObj, setStyleObj] = useState(getStyleObj());
+  const locale                  = useLocale()
 
   useEffect(() => {
     setStyleObj(getStyleObj(type))
@@ -38,7 +47,7 @@ function MenuListItem({
 
   return (
     <li className={cx(...styleObj.wrapper)}>
-      <button onClick={onClick}>
+      <Link href={`/${locale}/${path}`}>
         <div>
           {
             leftIcon && (
@@ -57,7 +66,7 @@ function MenuListItem({
           }
         </div>
         <ul>{children}</ul>
-      </button>
+      </Link>
     </li>
   );
 }
