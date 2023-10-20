@@ -1,18 +1,18 @@
 {
     "----------LIST----------"	        :	"----------LIST----------",
     "List"                              :   {
-        "list_id"					    :	"ID",
-        "list_login"				    :	"Tài khoản",
-        "list_email"     			    :   "Email",
-        "list_tel"     			        :   "ĐT",
+        "id"					        :	"ID",
+        "login"				            :	"Tài khoản",
+        "email"     			        :   "Email",
+        "tel"     			            :   "ĐT",
 
-        "list_type_Agent"			    :	"Nhân viên và cộng tác viên",
-        "list_type_Adm"			        :	"Quản trị viên",
-        "list_type_Cand"			    :	"Người cần tìm việc",
-        "list_type_Recr"			    :	"Người cung cấp việc làm",
-        "list_stat_new"			        :	"Tài khoản chờ xác thực",
-        "list_stat_review"			    :	"Tài khoản cần kiểm tra",
-        "list_stat_deleted"     	    :   "Tài khoản  bị xóa"
+        "type_Agent"			        :	"Nhân viên và cộng tác viên",
+        "type_Adm"			            :	"Quản trị viên",
+        "type_Cand"			            :	"Người cần tìm việc",
+        "type_Recr"			            :	"Người cung cấp việc làm",
+        "stat_new"			            :	"Tài khoản chờ xác thực",
+        "stat_review"			        :	"Tài khoản cần kiểm tra",
+        "stat_deleted"     	            :   "Tài khoản  bị xóa"
     },
 
     "----------ENT----------"	        :	"----------ENT----------",
