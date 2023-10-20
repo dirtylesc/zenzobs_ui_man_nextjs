@@ -1,7 +1,7 @@
-const lang = {
+const langs = {
     VI      : "vi",
     EN      : "en",
     FR      : "fr",
 }
 
-export default lang;
+export default langs;

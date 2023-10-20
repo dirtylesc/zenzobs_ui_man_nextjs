@@ -1,7 +1,11 @@
-import lang from './lang'
+import langs    from './langs'
+import groups   from './groups'
+import paths    from './paths'
 
 const constConfig = {
-    lang,
+    langs,
+    groups,
+    paths
 }
 
 export default constConfig;
