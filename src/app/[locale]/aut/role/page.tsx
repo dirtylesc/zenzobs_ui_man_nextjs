@@ -5,15 +5,15 @@ type Props = {
 };
 
 const metadata: Metadata = {
-  title: "ZenZobs Manager - User",
+  title: "ZenZobs Manager - Role",
 };
 
-function AutUserPage({params: {locale}}: Props) {
+function AutRolePage({params: {locale}}: Props) {
 
   return (
     <main className=""></main>
   );
 }
 
-export default AutUserPage;
+export default AutRolePage;
 export { metadata };

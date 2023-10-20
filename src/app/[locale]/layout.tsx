@@ -9,8 +9,8 @@ const inter   = Inter({ subsets: ['latin'] })
 const locales = ['vi', 'en'];
 
 type Props    = {
-  children: React.ReactNode;
-  params: {locale: string};
+  children    : React.ReactNode;
+  params      : {locale: string};
 };
 
 const metadata: Metadata = {
