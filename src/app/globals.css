@@ -19,3 +19,11 @@
 body {
   color: rgb(var(--foreground-rgb));
 }
+
+.float-right {
+  float: right;
+}
+
+.mb-0{
+  margin-bottom: 0;
+}
