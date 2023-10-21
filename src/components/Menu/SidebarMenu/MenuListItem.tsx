@@ -1,6 +1,7 @@
 'use client'
 
 import React, { 
+  Fragment,
   MouseEventHandler, 
   useEffect, 
   useState 
@@ -13,7 +14,7 @@ import Link from "next/link";
 
 const cx    = classNames.bind(styles);
 type Props  = {
-  title       : string;
+  title       ?: string;
   type        ?: string;
   path        ?: string;
   leftIcon    ?: React.ReactNode;
@@ -26,6 +27,18 @@ const getStyleObj = (type ?: string) => ({
     styles.menu_list_item,
     type === 'child' && styles.menu_list_item_child, 
     'list-none'
+  ],
+  title: [
+    styles.menu_list_item__title
+  ],
+  leftIcon: [
+    styles.menu_list_item__icon
+  ],
+  rightIcon: [
+    styles.menu_list_item__right_icon
+  ],
+  children: [
+    styles.menu_list_item__children
   ]
 })
 
@@ -38,35 +51,41 @@ function MenuListItem({
   onClick,
   children
 }: Props) {
-  const [styleObj, setStyleObj] = useState(getStyleObj());
-  const locale                  = useLocale()
+  const [styleObj, setStyleObj]       = useState(getStyleObj());
+  const [cNameAppend, setCNameAppend] = useState("")
+  const locale = useLocale()
 
   useEffect(() => {
     setStyleObj(getStyleObj(type))
   }, [type])
 
+  const handleOnClickDefault = () => {
+    if(cNameAppend) setCNameAppend("")
+    else setCNameAppend(styles.show_child)
+  }
+
   return (
-    <li className={cx(...styleObj.wrapper)}>
-      <Link href={`/${locale}/${path}`}>
+    <li className={cx(...styleObj.wrapper, cNameAppend)} onClick={onClick || handleOnClickDefault}>
+      <Link href={path ? `/${locale}/${path}` : "#"} >
         <div>
           {
             leftIcon && (
-              <div className={cx(styles.menu_list_item__icon)}>
+              <div className={cx(...styleObj.leftIcon)}>
                 {leftIcon}
               </div>
             )
           }
-          <span className={cx(styles.menu_list_item__title)}>{title}</span>
+          <span className={cx(...styleObj.title)}>{title}</span>
           {
             rightIcon && (
-              <div className={cx(styles.menu_list_item__right_icon)}>
+              <div className={cx(...styleObj.rightIcon)}>
                 {rightIcon}
               </div>
             )
           }
         </div>
-        <ul>{children}</ul>
       </Link>
+      {children && <ul className={cx(...styleObj.children)}>{children}</ul>}
     </li>
   );
 }
