@@ -1,10 +1,10 @@
-import React from "react";
-import classNames from "classnames";
+import React        from "react";
+import classNames   from "classnames";
 
-import styles from "./DefaultLayout.module.scss";
-import Sidebar from "@/layouts/components/Sidebar";
-import Header from "@/layouts/components/Header";
-import Rightbar from "@/layouts/components/Rightbar";
+import styles       from "./DefaultLayout.module.scss";
+import Sidebar      from "@/layouts/components/Sidebar";
+import Header       from "@/layouts/components/Header";
+import Rightbar     from "@/layouts/components/Rightbar";
 
 const cx = classNames.bind(styles);
 

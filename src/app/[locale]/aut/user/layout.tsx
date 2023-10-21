@@ -1,8 +1,10 @@
-import { NextIntlClientProvider } from "next-intl";
+import { 
+  NextIntlClientProvider 
+}                     from "next-intl";
 
-import reqMessages from "@/utils/i18n";
-import paths from "@/constants/paths";
-import DefaultLayout from "@/layouts/DefaultLayout";
+import reqMessages    from "@/utils/i18n";
+import paths          from "@/constants/paths";
+import DefaultLayout  from "@/layouts/DefaultLayout";
 
 type Props    = {
     children: React.ReactNode;
