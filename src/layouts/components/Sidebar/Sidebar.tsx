@@ -84,7 +84,7 @@ function Sidebar() {
   const t         = useTranslations("cms.Sidebar");
 
   return <section className={cx(styles.wrapper)}>
-      <MenuList>
+      <MenuList title="App">
         {
           menu.map(item => (
             <MenuListItem 
