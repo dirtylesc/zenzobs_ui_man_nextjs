@@ -1,4 +1,9 @@
+'use client'
+
 import React      from "react";
+import { 
+  useTranslations 
+}                 from "next-intl";
 import classNames from "classnames";
 
 import styles     from "./SidebarMenu.module.scss";
@@ -18,13 +23,11 @@ function MenuList({
   style,
   children,
 }: Props) {
-  console.log('====================================');
-  console.log(style?.wrapper);
-  console.log('====================================');
+  const t = useTranslations();
 
   return (
-    <div className={style?.wrapper}>
-      {title && <h5 className={cx(styles.menu_list__title)}>{title}</h5>}
+    <div className={cx(styles.menu_list)}>
+      {title && <h5 className={cx(styles.menu_list__title)}>{t(title)}</h5>}
       <ul className={cx(styles.menu_list__content, style?.list)}>{children}</ul>
     </div>
   );

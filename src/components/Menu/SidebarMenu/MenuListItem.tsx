@@ -6,21 +6,39 @@ import React, {
   useEffect, 
   useState 
 }                     from "react";
-import { useLocale }  from "next-intl";
+import { 
+  useLocale, 
+  useTranslations 
+}                     from "next-intl";
+import Link           from "next/link";
+import Image          from "next/image";
+
 import classNames     from "classnames";
+import Icon           from "@mdi/react";
 
 import styles         from "./SidebarMenu.module.scss";
-import Link from "next/link";
 
 const cx    = classNames.bind(styles);
 type Props  = {
   title       ?: string;
   type        ?: string;
   path        ?: string;
-  leftIcon    ?: React.ReactNode;
+  leftIcon    ?: {
+    src       ?: string;
+    alt       ?: string;
+    path      ?: string,
+  };
   rightIcon   ?: React.ReactNode;
   onClick     ?: MouseEventHandler;
-  children    ?: React.ReactNode;
+
+  //...props
+  href        ?: string;
+  style       ?: {
+    wrapper   ?: string;
+    show      ?: string;
+    title     ?: string;
+    icon      ?: string;
+  };
 }
 const getStyleObj = (type ?: string) => ({
   wrapper: [
@@ -36,9 +54,6 @@ const getStyleObj = (type ?: string) => ({
   ],
   rightIcon: [
     styles.menu_list_item__right_icon
-  ],
-  children: [
-    styles.menu_list_item__children
   ]
 })
 
@@ -48,44 +63,69 @@ function MenuListItem({
   path,
   leftIcon,
   rightIcon,
-  onClick,
-  children
+  onClick = () => {},
+  ...props
 }: Props) {
-  const [styleObj, setStyleObj]       = useState(getStyleObj());
-  const [cNameAppend, setCNameAppend] = useState("")
-  const locale = useLocale()
+  const [styleObj   , setStyleObj   ] = useState(getStyleObj());
+  const [isShowChild, setIsShowChild] = useState(false)
+
+  const locale    = useLocale()
+  const t         = useTranslations();
+  let   leftComp  = null;
+  let   mainComp  : React.ElementType = Fragment;
+
+  if(leftIcon?.path) {
+    leftComp = <Icon path={leftIcon.path} />;
+  } else if(leftIcon?.src) {
+    leftComp = <Image src={leftIcon.src} alt={t(leftIcon.alt)} width={32} height={32} />
+  }
+
+  if(path) {
+    mainComp    = Link;
+    props.href  = `/${locale}/${path}`
+  }
 
   useEffect(() => {
     setStyleObj(getStyleObj(type))
   }, [type])
 
   const handleOnClickDefault = () => {
-    if(cNameAppend) setCNameAppend("")
-    else setCNameAppend(styles.show_child)
+    if(isShowChild) {
+      setIsShowChild(false);
+      return;
+    }
+    setIsShowChild(true)
   }
 
   return (
-    <li className={cx(...styleObj.wrapper, cNameAppend)} onClick={onClick || handleOnClickDefault}>
-      <Link href={path ? `/${locale}/${path}` : "#"} >
-        <div>
-          {
-            leftIcon && (
-              <div className={cx(...styleObj.leftIcon)}>
-                {leftIcon}
-              </div>
-            )
-          }
-          <span className={cx(...styleObj.title)}>{title}</span>
-          {
-            rightIcon && (
-              <div className={cx(...styleObj.rightIcon)}>
-                {rightIcon}
-              </div>
-            )
-          }
-        </div>
-      </Link>
-      {children && <ul className={cx(...styleObj.children)}>{children}</ul>}
+    <li 
+      className={cx(
+        ...styleObj.wrapper,
+        
+        props.style?.wrapper,
+        isShowChild && props.style?.show
+      )} 
+      onClick={type === 'parent' && handleOnClickDefault || onClick}
+    >
+      {
+        React.createElement(mainComp, mainComp === Link && { href: props.href }, [
+          leftIcon && (
+            <div key="leftIcon" className={cx(...styleObj.leftIcon, props.style?.icon)}>
+              {leftComp}
+            </div>
+          ),
+          title && (
+            <span key="title" className={cx(...styleObj.title, props.style?.title)}>
+              {t(title)}
+            </span>
+          ),
+          rightIcon && (
+            <div key="rightIcon" className={cx(...styleObj.rightIcon, props.style?.icon)}>
+              {rightIcon}
+            </div>
+          ),
+        ])
+      }
     </li>
   );
 }
