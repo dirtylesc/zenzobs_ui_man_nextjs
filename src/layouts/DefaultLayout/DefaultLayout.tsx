@@ -5,6 +5,7 @@ import styles       from "./DefaultLayout.module.scss";
 import Sidebar      from "@/layouts/components/Sidebar";
 import Header       from "@/layouts/components/Header";
 import Rightbar     from "@/layouts/components/Rightbar";
+import Content from "../components/Content/Content";
 
 const cx = classNames.bind(styles);
 
@@ -15,7 +16,9 @@ function DefaultLayout({ children }: { children: React.ReactNode }) {
       <div className={cx(styles.container)}>
         <Header />
         <Rightbar />
-        <div className={cx(styles.content)}>{children}</div>
+        <Content>
+          {children}
+        </Content>
       </div>
     </section>
   );
