@@ -17,19 +17,18 @@
 
 	"----------SIDEBAR----------"						: "",
 	"Sidebar"											: {
+		"app"											: "Chức năng",
 		"partner_client"                        		: "Đối tác & khách hàng",
 		"per_person_typ_02"                     		: "Khách hàng",
 		"per_person_typ_03"                     		: "Nhà phân phối",
 		"per_person_typ_04"                     		: "Nhà sản xuất",
 		"per_person_typ_06"                     		: "Đối tác khác",
 	
-		"aut" 				                			: "Người dùng",
+		"aut_" 				                			: "Người dùng",
 		"aut_user"	                					: "QL người dùng",
 		"aut_auth_service"	                			: "QL dịch vụ",
 		"aut_role"	                					: "QL vai trò",
 		"aut_right"	                					: "QL quyền",
-		
-		"aut_user_typ_01" 		                		: "QL người dùng",
 	
 		"mat" 					                		: "Sản phẩm",
 		"mat_material" 			                		: "Sản phẩm",
@@ -37,7 +36,7 @@
 		"mat_alarm" 			                		: "QL báo động",
 		"mat_bcode" 			                		: "QL mã vạch",	
 		
-		"tpy_cat" 				                		: "QL nhóm sản phẩm",
+		"tpy_category" 				                	: "QL nhóm sản phẩm",
 
 
 		"shp_vendor"			               			: "Bán hàng",
@@ -73,7 +72,7 @@
 		"report_sor_order_in_warehouse" 	    		: "Tổng kết nhập kho",
 		"report_sor_order_out_warehouse" 	    		: "Tổng kết xuất kho",
 		
-		"nso" 						            		: "Bài viết",
+		"nso_" 						            		: "Bài viết",
 		"nso_post" 					            		: "Blog",
 		"nso_offer" 				            		: "Ưu đãi"
 	},
@@ -83,5 +82,7 @@
 		"vi"								        	: "Tiếng Việt",
 		"us"								        	: "English",
 		"fr"								        	: "Fraiçais"
-	}
+	},
+
+	"def_name"											: "Phan Xuân Sỹ"
 }

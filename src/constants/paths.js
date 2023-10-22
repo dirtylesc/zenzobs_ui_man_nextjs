@@ -7,6 +7,8 @@ const paths = {
     NSO_OFFER           : "nso/offer",
     NSO_POST            : "nso/post",
 
+    TPY_CATEGORY        : "tpy/category",
+
     PER_PERSON          : "per/person",
     PER_PERINFO         : "per/perInfo",
 
