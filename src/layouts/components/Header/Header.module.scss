@@ -3,7 +3,6 @@
     background-color: #fff;
     -webkit-box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
     box-shadow: 0 0 35px 0 rgba(154,161,171,.15);
-    min-height: 70px;
     position: fixed;
     left: 260px;
     top: 0;
@@ -14,4 +13,33 @@
 .right_menu{
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+.menu_list_item {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0px 20px;
+
+    &_user {
+        padding: calc(31px / 2) 20px calc(31px / 2) 20px !important;
+        background-color: #fafbfd;
+        border: 1px solid #f1f3fa;
+        border-width: 0 1px;
+    }
+}
+
+.menu_list_item__show {
+
+}
+
+.menu_list_item__title {
+    padding-left: 12px !important;
+    padding-right: 0 !important;
+}
+
+.menu_list_item__icon svg{
+    width: 26px;
+    height: 26px;
 }
