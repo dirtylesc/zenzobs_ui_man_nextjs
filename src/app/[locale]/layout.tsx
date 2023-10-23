@@ -1,9 +1,9 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { notFound } from "next/navigation";
+import type { Metadata }  from 'next'
+import { Inter }          from 'next/font/google'
+import { notFound }       from "next/navigation";
+import { Provider }       from 'react-redux';
 
-import DefaultLayout from '@/layouts/DefaultLayout';
-import { NextIntlClientProvider } from 'next-intl';
+import store from '@/utils/store';
 
 const inter   = Inter({ subsets: ['latin'] })
 const locales = ['vi', 'en'];
@@ -29,7 +29,9 @@ async function LocaleLayout({children, params : { locale }}: Props) {
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        {children}
+          <Provider store={store}>
+            {children}
+          </Provider>
       </body>
     </html>
   );

@@ -1,7 +1,11 @@
-import { Metadata } from "next";
-import classNames     from 'classnames';
+import { 
+  Metadata 
+}                   from "next";
+import classNames   from 'classnames';
 
-import styles         from '@/app/content.module.scss'
+import styles       from '@/app/content.module.scss'
+import List         from "@/components/List";
+import ListItem from "@/components/List/ListItem";
 
 const cx        = classNames.bind(styles);
 
@@ -28,7 +32,16 @@ const menu = {
 function AutUserPage({params: {locale}}: Props) {
   return (
     <div className="flex">
-      <div className={cx(styles.list, "lg:w-3/12 md:w-3/12 sm:w-12/12")}></div>
+      <div className={cx(styles.list, "lg:w-3/12 md:w-3/12 sm:w-12/12")}>
+        <List>
+          <ListItem 
+            title = "Quản trị viên"
+          />
+          <ListItem 
+            title = "Quản trị viên"
+          />
+        </List>
+      </div>
       <div className={cx(styles.ent, "lg:w-9/12 md:w-9/12 sm:w-12/12")}></div>
     </div>
   );
