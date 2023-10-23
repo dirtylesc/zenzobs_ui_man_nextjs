@@ -71,17 +71,17 @@ function MenuListItem({
 
   const locale    = useLocale()
   const t         = useTranslations();
-  let   leftComp  = null;
-  let   mainComp  : React.ElementType = Fragment;
+  let   LeftComp  = null;
+  let   MainComp  : React.ElementType = Fragment;
 
   if(leftIcon?.path) {
-    leftComp = <Icon path={leftIcon.path} />;
+    LeftComp = <Icon path={leftIcon.path} />;
   } else if(leftIcon?.src) {
-    leftComp = <Image src={leftIcon.src} alt={t(leftIcon.alt)} width={32} height={32} />
+    LeftComp = <Image src={leftIcon.src} alt={t(leftIcon.alt)} width={32} height={32} />
   }
 
   if(path) {
-    mainComp    = Link;
+    MainComp    = Link;
     props.href  = `/${locale}/${path}`
   }
 
@@ -108,10 +108,10 @@ function MenuListItem({
       onClick={type === 'parent' && handleOnClickDefault || onClick}
     >
       {
-        React.createElement(mainComp, mainComp === Link && { href: props.href }, [
+        React.createElement(MainComp, MainComp === Link && { href: props.href }, [
           leftIcon && (
             <div key="leftIcon" className={cx(...styleObj.leftIcon, props.style?.icon)}>
-              {leftComp}
+              {LeftComp}
             </div>
           ),
           title && (
