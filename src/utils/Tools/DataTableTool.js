@@ -1,3 +1,18 @@
+import 'datatables.net-plugins/pagination/input'
+import 'datatables.net-plugins/pagination/scrolling'
+import 'datatables.net-plugins/pagination/select'
+
+import { decodeUTF8 } from '@/utils/Tools/NetworkTool'
+
+const App       = {
+    data        : {
+        page    : 1
+    }
+}
+var SDOM_DATATABLE_DEFAULT	= 	"<'row'<'col-lg-5 col-md-5 col-sm-5'l><'col-lg-7 col-md-7 col-sm-7'f>>" +
+								"<'row'<'col-lg-12 col-md-12 col-sm-12'tr>>" +
+								"<'row'<'col-lg-7 col-md-7 col-sm-12'i><'col-lg-5 col-md-5 col-sm-12'p>>";
+
 function req_gl_Datatable_Ajax_Dyn(div, url, url_header, fileTraduction, colConfig, refJson, fError, timeWait, datatableClass, fPreprocess, fCallback, dataTableConf, scrollX) {
     if (!timeWait) timeWait = 800;
 
@@ -9,7 +24,7 @@ function req_gl_Datatable_Ajax_Dyn(div, url, url_header, fileTraduction, colConf
     var tableId = div;
     var dataT = {
         "searchOption": false,
-        "searchOptionConfig": [{ lab: $.i18n('all'), val: 0 }], //list des options dans select 
+        "searchOptionConfig": [{ lab: "All", val: 0 }], //list des options dans select 
 
         "processing": true,
 
@@ -87,7 +102,7 @@ function req_gl_Datatable_Ajax_Dyn(div, url, url_header, fileTraduction, colConf
                         //		    				fnCallback(msg);
 
                         if (!can_gl_BeLogged(msg)) return;
-                        // App.network.decodeUTF8(msg);
+                        decodeUTF8(msg);
                         if (msg.sv_code == 20000) {
                             try {
                                 msg.aaData = JSON.parse(msg.aaData);
@@ -183,6 +198,18 @@ function req_gl_Datatable_Ajax_Dyn(div, url, url_header, fileTraduction, colConf
 
     return oTable;
 }
+
+var can_gl_BeLogged = function (res){
+	if (!res.sess_stat){
+//		localStorage.clear();	
+		// try{
+		// 	do_gl_LocalStorage_Remove (App.keys.KEY_STORAGE_CREDENTIAL);
+		// }catch(e){}	
+		// App.router.controller.do_lc_run(App.router.routes.HOME);
+		return false;
+	}		
+	return true;
+};
 
 var req_gl_table_col_config = function (table, data, options) {
     if (!table.is("table")) {
@@ -309,26 +336,26 @@ var req_gl_table_col_config = function (table, data, options) {
                             if (oData[primaryCol] != null && oData[primaryCol] != "") {
                                 canConfirm = true;
                             }
-                            if (canConfirm) {
-                                App.MsgboxController.do_lc_show({
-                                    title: $.i18n("msgbox_confirm_title"),
-                                    content: $.i18n("common_msg_del_confirm"),
-                                    buttons: {
-                                        OK: {
-                                            lab: $.i18n("common_btn_ok"),
-                                            funct: function () {
-                                                oData.mode = 3;
-                                                table.draw();
-                                            },
-                                        },
-                                        NO: {
-                                            lab: $.i18n("common_btn_cancel"),
-                                        }
-                                    }
-                                });
-                            } else {
-                                row.remove().draw();
-                            }
+                            // if (canConfirm) {
+                            //     App.MsgboxController.do_lc_show({
+                            //         title: $.i18n("msgbox_confirm_title"),
+                            //         content: $.i18n("common_msg_del_confirm"),
+                            //         buttons: {
+                            //             OK: {
+                            //                 lab: $.i18n("common_btn_ok"),
+                            //                 funct: function () {
+                            //                     oData.mode = 3;
+                            //                     table.draw();
+                            //                 },
+                            //             },
+                            //             NO: {
+                            //                 lab: $.i18n("common_btn_cancel"),
+                            //             }
+                            //         }
+                            //     });
+                            // } else {
+                            //     row.remove().draw();
+                            // }
                         });
                     }
 
@@ -388,6 +415,7 @@ var req_gl_table_col_config = function (table, data, options) {
     }
     return colConfig;
 }
+
 
 export {
     req_gl_Datatable_Ajax_Dyn,
