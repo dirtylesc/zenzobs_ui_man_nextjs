@@ -1,27 +1,30 @@
-'use client'
-
-import React, { useEffect, useRef } from 'react';
-import $ from 'jquery';
+import React, { 
+  useEffect 
+} from 'react';
 import 'datatables.net';
+
 import {
   req_gl_Request_Content_Send
-} from './NetworkTool'
+} from '@/utils/Tools/NetworkTool'
 import {
   req_gl_table_col_config,
   req_gl_Datatable_Ajax_Dyn
-} from './DataTableTool'
+} from '@/utils/Tools/DataTableTool'
 
 type Props  = {
-  div   : string
-  typ01 ?: string
-  typ02 ?: string
-  stat  ?: string
+  data      : {
+    header  : {
+      id    : string,
+      title : string
+    }[]
+  }
+  div       :  string
+  typ01     ?: number
+  typ02     ?: number
+  stat      ?: number
 }
-const table = {
-    head: [
-        "ID", "Tài khoản", "Email", "SĐT"
-    ]
-}
+
+const datatables: any = {};
 
 const do_get_list_ByAjax_Dyn = ({div, typ01, typ02, stat}: {
   div   : string,
@@ -54,8 +57,12 @@ const do_get_list_ByAjax_Dyn = ({div, typ01, typ02, stat}: {
   //call Datatable AJAX dynamic function from DatatableTool
   var oTable = req_gl_Datatable_Ajax_Dyn (
     div, 
-    "http://localhost:8080/priv",
-    "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG0iLCJleHAiOjE2OTgwNzQwMDIsImlhdCI6MTY5ODA3MDQwMn0.E70mAY7_1eisTAnftiPBmZ65u1Y-sxQefJpYmrkZ4iW4xgZ_5gbafPQxZX03JCZ2K6pQnL99jSzs9EO4M0o0lg", 
+    "http://localhost:8080/bo/api/priv",
+    {
+      "Accept"        : "application/json",
+      "Authorization" : "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG0iLCJleHAiOjE2OTgxNzA5NDAsImlhdCI6MTY5ODE2NzM0MH0.uxfz0153RPYbMdIxXAfAk1PyG5Wp6WVJ2a4q7-R_2SLmVHmAf1pymrZALQrOQ7O3Ql4ZPb0IYuy41ZCaak-AWw",
+      "Content-Type"  :"application/json"
+    }, 
     fileTransl, 
     colConfig, 
     ref, 
@@ -65,35 +72,25 @@ const do_get_list_ByAjax_Dyn = ({div, typ01, typ02, stat}: {
     dataTableOption
   );
   
-  var key			= (!typ01?"":typ01) + "_" + (!typ02?"":typ02) + "_" + (!stat?"":stat);
-  // pr_datatables [key] = oTable;
+  const key			  = (!typ01?"":typ01) + "_" + (!typ02?"":typ02) + "_" + (!stat?"":stat);
+  datatables[key] = oTable;
 }
 
-function DataTable({ div, typ01, typ02, stat } : Props) {
-  const tableRef = useRef(null);
-
+function DataTable({ data, div, typ01, typ02, stat } : Props) {
   useEffect(() => {
-    const table = tableRef.current;
-  
-    if (table) {
-      // $(table).DataTable();
-      do_get_list_ByAjax_Dyn({ div, typ01: 1 });
+    const child = $(div).find(".dataTables_scroll");
+    if(child.length <= 0) {
+      do_get_list_ByAjax_Dyn({ div, typ01, typ02, stat });
     }
-  
-    return () => {
-      if (table) {
-        $(table).DataTable().destroy(true);
-      }
-    };
-  }, []);
+  }, [div, stat, typ01, typ02]);
 
   return (
-    <div className={div}>
-      <table ref={tableRef}>
+    <div id={div.substring(1)}>
+      <table className='table-datatableDyn'>
         <thead>
           <tr>
-            {table.head.map(item => (
-              <th key={item}>{item}</th>
+            {data.header.map(item => (
+              <th key={item.id} data-name={item.id} data-visible="true">{item.title}</th>
             ))}
           </tr>
         </thead>

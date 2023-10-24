@@ -37,9 +37,9 @@ function AutUserPage({params: {locale}}: Props) {
           <ListItem 
             title = "Quản trị viên"
           />
-          <ListItem 
+          {/* <ListItem 
             title = "Quản trị viên"
-          />
+          /> */}
         </List>
       </div>
       <div className={cx(styles.ent, "lg:w-9/12 md:w-9/12 sm:w-12/12")}></div>
